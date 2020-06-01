@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style type="text/css">
+    #return_string{
+        margin-top:20px
+    }
+</style>
+
+{% extends 'xadmin/base_site.html' %}
+
+{% block content-nav %}
+{% endblock %}
+
+{% block content %}
+<form id="sqlform" method="post" action="http://127.0.0.1:8000/xadmin/test_view/">
+ {% csrf_token %}
+<table class="table table-hover">
+                <tr>
+                    <th>AppName：</th>
+                    <td>
+                        <select class="select" id="stream" name="app">
+                        <option  value="mlive" {% if app_name == 'mlive' %}
+                        selected
+                        {% endif %}>mlive</option>
+                        <option  value="news" {% if app_name == 'news' %}
+                        selected
+                        {% endif %}>news</option>
+                        <option  value="sports" {% if app_name == 'sports' %}
+                        selected
+                        {% endif %}>sports</option>
+                        <option  value="cstv" {% if app_name == 'cstv' %}
+                        selected
+                        {% endif %}>cstv</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 50px">StreamName：</th>
+                    <td>
+                        <input value="{{ streaa_name }}" id="name" name="name">
+                    </td>
+                </tr>
+ </table>
+    <div>
+{# <input type="button"  value="确定" class="btn btn-success" id="ok">#}
+         <input type="submit"  value="确定" class="btn btn-success" id="ok">
+    </div>
+    </form>
+<div id="return_string">{{ push }}</div>
+{% endblock %}
